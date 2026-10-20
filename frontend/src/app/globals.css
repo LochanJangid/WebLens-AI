@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --canvas: #050505;
+    --surface: #0B0B0D;
+    --surface-secondary: #111114;
+    --surface-raised: #17171B;
+    --text-primary: #F7F7F8;
+    --text-secondary: #B4B4BD;
+    --text-muted: #777781;
+    --accent: #F20D4F;
+    --accent-hover: #FF245F;
+    --accent-soft: rgba(242, 13, 79, 0.12);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --border-accent: rgba(242, 13, 79, 0.35);
+    --radius-section: 24px;
+    --radius-card: 16px;
+    --radius-control: 12px;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+  }
+
+  body {
+    @apply bg-[#050505] text-[#F7F7F8] antialiased font-sans selection:bg-[#F20D4F] selection:text-white min-h-screen flex flex-col;
+    background-color: #050505;
+    color: #F7F7F8;
+  }
+}
+
+/* Atmospheric subtle grid overlay */
+.bg-tech-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+/* Subtle crimson illumination glow */
+.crimson-ambient-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(242, 13, 79, 0.16) 0%, rgba(5, 5, 5, 0) 65%);
+}
+
+.crimson-radial-spot {
+  background: radial-gradient(circle at center, rgba(242, 13, 79, 0.12) 0%, transparent 70%);
+}
+
+/* Restrained, smooth animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes floatSlow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes floatDelayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(6px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.03); }
+}
+
+@keyframes pulseScan {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.8; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.25s ease-out forwards;
+}
+
+.animate-float-slow {
+  animation: floatSlow 6s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatDelayed 7s ease-in-out infinite 1.5s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-pulse-scan {
+  animation: pulseScan 3s ease-in-out infinite;
+}
+
+/* Hero & Scroll Entrance Keyframes */
+@keyframes heroBgFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes heroInputSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroBorderGlow {
+  0% {
+    border-color: rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  }
+  100% {
+    border-color: rgba(242, 13, 79, 0.4);
+    box-shadow: 0 0 24px rgba(242, 13, 79, 0.25);
+  }
+}
+
+@keyframes navbarEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-hero-bg {
+  animation: heroBgFadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-hero-input {
+  animation: heroInputSlideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animate-hero-border {
+  animation: heroBorderGlow 1s ease-out 0.3s forwards;
+}
+
+.animate-navbar-entrance {
+  animation: navbarEntrance 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Scroll reveal utility classes */
+.reveal-init {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1), transform 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-init.is-revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom scrollbars for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0B0B0D;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1F1F24;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2E2E36;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-slow,
+  .animate-float-delayed,
+  .animate-pulse-glow,
+  .animate-pulse-scan,
+  .animate-fade-in,
+  .animate-hero-bg,
+  .animate-hero-input,
+  .animate-hero-border,
+  .animate-navbar-entrance,
+  .reveal-init {
+    animation: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+}

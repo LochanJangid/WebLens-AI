@@ -1,0 +1,17 @@
+{
+  "name": "weblens-ai",
+  "version": "1.0.0",
+  "description": "WebLensAI — AI-Powered Website Intelligence & Screenshot Visual Improvement Studio. Built by Lochan Jangid.",
+  "author": {
+    "name": "Lochan Jangid",
+    "url": "https://lochan.vercel.app/"
+  },
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "build": "npm --prefix frontend run build",
+    "start": "npm --prefix frontend run start",
+    "lint": "npm --prefix frontend run lint",
+    "test": "npm --prefix frontend test"
+  }
+}
